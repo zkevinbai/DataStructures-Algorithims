@@ -58,41 +58,101 @@
 // TODO: Implement the LRUCacheItem class here
 class LRUCacheItem {
   constructor(val = null, key = null) {
-
+    this.val = val;
+    this.key = key;
+    this.next = null;
+    this.prev = null;
   }
 }
 
 // TODO: Implement the LRUCacheItem class here
 class LRUCache {
   constructor(limit) {
+    this.limit = limit;
+    this.length = 0;
 
+    this.head = null;
+    this.tail = null;
+    this.cache = {};
   }
 
   // TODO: Implement the size method here
   size() {
-
+    return this.length;
   }
 
   // TODO: Implement the get method here
   get(key) {
-
+    if (!this.cache[key]) {
+       return null;
+    };
+    this.promote(this.cache[key]);
+    return this.cache[key].val;
   }
 
   // TODO: Implement the set method here
   set(key, val) {
+      let item = new LRUCacheItem(val, key);
+      this.cache[item.key] = item;
+      if (!this.length){
+        this.head = item;
+        this.tail = item;
+      } else {
+        let oldHead = this.head;
+        this.head = item;
+        this.head.next = oldHead;
+        oldHead.prev = this.head;
 
+        if (this.isFull()) {
+          this.prune();
+        }
+      }
+
+      this.length += 1;
+      return this.size();
   }
 
   isFull() {
-    
+    return this.length >= this.limit;
   }
 
   prune() {
-
+    let oldTail = this.tail;
+    let newTail = this.tail.prev;
+    delete this.cache[oldTail.key];
+    this.tail = newTail;
+    this.length -= 1;
   }
 
   promote(item) {
+    if (this.length === 1) {
+      return ;
+    } else if (item === this.head) {
+      return ;
+    } else if (item === this.tail) {
+      let prevItem = item.prev; 
+      this.tail = prevItem;
+       
+      let oldHead = this.head; 
+      this.head = item;
+      item.next = oldHead;
+      oldHead.prev = item;
+      return ;
+    }
+    let prevItem = item.prev;
+    let nextItem = item.next;
+    prevItem.next = nextItem;
+    nextItem.prev = prevItem;
+   
+    let oldHead = this.head; 
+    this.head = item;
+    item.next = oldHead;
+    oldHead.prev = item;
 
+    
+    // delete this.cache[item.key];
+    // this.length -= 1;
+    // this.set(item.key, item.val)
   }
 }
 
