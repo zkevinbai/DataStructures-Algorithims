@@ -306,6 +306,8 @@ describe('LinkedList', () => {
                 expect(linkedList.get(1)).to.eql({ value: 'B', next: { value: 'C', next: { value: 'D', next: null } } });
             });
 
+            // [1, 2, 3, 4, 5, 6]
+            // [B, C, E, D, A, F]
             it('Should update the length property when a node is inserted', () => {
                 linkedList.addToTail('B');
                 linkedList.addToTail('C');
