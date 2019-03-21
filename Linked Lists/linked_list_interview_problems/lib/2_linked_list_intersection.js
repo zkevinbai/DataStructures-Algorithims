@@ -63,6 +63,7 @@
 //   }
 //   return null;
 // }
+
 function linkedListIntersection(list1, list2) {
   // TODO: Implement the hasCycle function!
   let longer;
@@ -75,17 +76,19 @@ function linkedListIntersection(list1, list2) {
     shorter = list1;
   }
 
-  let hash = {};
+  let object = {};
 
   let longNode = longer.head; 
   while (longNode) {
-    hash[longNode] = true;
+    // object[longNode.value] = true;
+    object[JSON.stringify(longNode)] = true;
     longNode = longNode.next
   }
 
   let shortNode = shorter.head;
   while (shortNode) {
-    if (hash[shortNode]) {
+    // if (object[shortNode.value]) {
+    if (object[JSON.stringify(shortNode)]) {
       return shortNode;
     }
     shortNode = shortNode.next;
