@@ -110,6 +110,7 @@ describe('MaxHeap', () => {
         it('should delete the maximum element from the heap', () => {
             let heap = new MaxHeap();
             heap.array = [null, 100, 50, 27, 32, 42, 24];
+            heap.array = [null, 50, 27, 32, 42, 24];
             heap.deleteMax();
             expect(heap.array.includes(100)).to.equal(false);
         });
