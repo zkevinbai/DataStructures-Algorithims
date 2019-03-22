@@ -111,10 +111,12 @@ describe('Adjacency List Algorithms', () => {
              let graph1 = {
                 'a': ['b'],
                 'b': [],
+
                 'c': ['d'],
                 'd': ['e'],
                 'e': [],
              };
+            //  debugger
             expect(numRegions(graph1)).to.equal(2);
 
             let graph2 = {
