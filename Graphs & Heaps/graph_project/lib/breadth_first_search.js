@@ -1,7 +1,6 @@
 function breadthFirstSearch(startingNode, targetVal) {
     let q = [];
-    let obj = {};
-    let circleKiller = [];
+    let cycleKiller = [];
     
     if (startingNode.val === targetVal) {
         return startingNode;
@@ -9,15 +8,13 @@ function breadthFirstSearch(startingNode, targetVal) {
         return null;
     }
     let node = startingNode;
-    obj[node.val + 0] = true;
     q = q.concat(node.neighbors);
 
     while (q.length) {
         for (let i = 0; i < q.length; i++) {
             node = q.shift();
-
             //Check for cycle 
-            if (circleKiller.includes(node)) {
+            if (cycleKiller.includes(node)) {
                 return null;
             }
 
@@ -26,8 +23,7 @@ function breadthFirstSearch(startingNode, targetVal) {
             } else if (node.neighbors) {
                 q = q.concat(node.neighbors);
             } 
-
-            circleKiller.push(node);
+            cycleKiller.push(node);
         }
     }
     return null; 
