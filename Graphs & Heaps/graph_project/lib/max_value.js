@@ -3,7 +3,7 @@ function maxValue(node, visited=new Set()) {
     let maxVal = 0;
     let cycleKiller = [];
 
-    while(q.length){
+    while(q.length){ 
         let node = q.shift();
 
         if (cycleKiller.includes(node)){
