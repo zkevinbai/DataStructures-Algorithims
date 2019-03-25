@@ -30,7 +30,7 @@ function invalidBraces(string){
     for (let index = 0; index < string.length; index++) {
         if (dictionary[0].includes(string[index])){
             if (stack.length === 0 && string[index] === glossary[0][1]){
-                return false
+                return true
             } else if (stack[0] === glossary[0][0] && string[index] === glossary[0][1] ) {
                 stack.shift();
             } else {
@@ -39,7 +39,7 @@ function invalidBraces(string){
         } 
         if (dictionary[1].includes(string[index])){
             if (stack.length === 0 && string[index] === glossary[1][1]){
-                return false
+                return true
             } else if (stack[0] === glossary[1][0] && string[index] === glossary[1][1] ) {
                 stack.shift();
             } else {
@@ -48,7 +48,7 @@ function invalidBraces(string){
         } 
         if (dictionary[2].includes(string[index])){
             if (stack.length === 0 && string[index] === glossary[2][1]){
-                return false
+                return true
             } else if (stack[0] === glossary[2][0] && string[index] === glossary[2][1] ) {
                 stack.shift();
             } else {
@@ -57,5 +57,5 @@ function invalidBraces(string){
         } 
     }
 
-    return true;
+    return false;
 }
