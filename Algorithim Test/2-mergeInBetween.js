@@ -12,7 +12,7 @@ const mergeInBetween = (list1, list2, a, b) => {
     }
 
     let endOfTwo = list2;
-    while(list2.next){
+    while(endOfTwo.next){
         endOfTwo = endofTwo.next;
     }
 
