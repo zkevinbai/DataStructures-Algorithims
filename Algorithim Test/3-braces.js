@@ -57,5 +57,7 @@ function invalidBraces(string){
         } 
     }
 
+    if (stack.length) return true;
+
     return false;
 }
