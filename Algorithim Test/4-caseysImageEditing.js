@@ -1,25 +1,41 @@
-function largestMatrix(arr) {
-    let squared = arr.length ** 2;
-    let zeroCount = 0;
-    let max = arr.length - 1;
+function largestMatrix(array) {
+    let maxSquare = [];
 
-    for (let index = 0; index < arr.length; index++) {
-        let subArr = arr[index];
+    for (let index = 0; index < array.length; index++) {
+        const subArray = array[index];
 
-
-        for (let index = 0; index < subArr.length; index++) {
-            if (subArr[index] === 0){
-                max -= 1;
-                zeroCount += 1;
-            }            
-        }        
+        if (!maxSquare.length){
+            if (!subArray.includes(0)){
+                maxSquare.push(subArray);
+            } else {
+                let slice = [];
+                for (let i = 0; i < subArray.length; i++) {
+                    const number = subArray[i];
+                    if (number === 1) {
+                        slice.push(1);
+                    } else {
+                        break;
+                    }
+                }
+                maxSquare.push(slice);
+            }
+        } else {
+            let slice = [];
+            for (let i = 0; i < subArray.length; i++) {
+                const number = subArray[i];
+                if (number === 1) {
+                    slice.push(1);
+                } else {
+                    break;
+                }
+            }
+            maxSquare.push(slice);
+        }
     }
 
-    if (zeroCount === squared) return 0;
-    if ( max < 1) return 1;
-
-    return max;
+    return maxSquare;
 }
+
 let arr = [
 [0, 1, 1],
 [1, 1, 0],
