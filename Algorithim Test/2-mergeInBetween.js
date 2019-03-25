@@ -4,25 +4,27 @@ const mergeInBetween = (list1, list2, a, b) => {
         endOfTwo = endOfTwo.next;
     }
 
-    // if (a === 1 && b === 1){
-    //     endOfTwo = list1.next;
-    //     return list2;
-    // }
-
-    let startMinusOne = list1;
-    let endPlusOne = list1;
-
-    for (let index = 0; index < a; index++) {
-        startMinusOne = list1.next;
+    if (a === 1 && b === 1) {
+        endOfTwo = list1.next;
+        return list2;
     }
 
-    for (let index = 0; index < b + 1; index++) {
-        endPlusOne = list1.next;
+    let aMinusOne = list1;
+
+    for (let index = 0; index < a - 2; index++) {
+        aMinusOne = aMinusOne.next;
     }
 
-    startMinusOne.next = list2;
-    endOfTwo.next = endPlusOne;
+    let bPlusOne = list1;
+
+    for (let index = 0; index < b; index++) {
+        bPlusOne = bPlusOne.next;
+    }
+
+    aMinusOne.next = list2;
+    endOfTwo.next = bPlusOne;
+
+    if ( a === 1) return list2;
 
     return list1;
 }
-
